@@ -1,4 +1,11 @@
-fs.makeDir("/pain-in-the")
+-- Make sure that the following var always matches the file name.
+local thisFilePath = "src/update.lua"
+
+-- First, update the update script....
+getGithubResource(thisFilePath)
+
+setupToolsDirectory()
+
 
 
 --[[ Functions ]]--
@@ -18,4 +25,11 @@ function getWebResourceToFile(url, outputFileName)
     local file = fs.open(outputFileName)
     file.write(requestContent)
     file.close()
+end
+
+function setupToolsDirectory()
+    local directoryName = "/tools"
+    if not fs.exists(directoryName) then
+        fs.makeDir(directoryName)
+    end
 end
