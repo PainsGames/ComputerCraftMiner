@@ -13,7 +13,7 @@ function getWebResourceToFile(url, outputFileName)
     local requestContent = request.readAll()
     request.close()
 
-    local file = fs.open(outputFileName)
+    local file = fs.open(outputFileName, "w")
     file.write(requestContent)
     file.close()
 end
