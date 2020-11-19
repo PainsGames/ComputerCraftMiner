@@ -4,7 +4,8 @@
 -- filePath - the repository-level path to the file to grab
 function getGithubResource(filePath, fileName)
     local githubPreface = "https://raw.githubusercontent.com/PainsGames/ComputerCraftMiner/main/"
-    getWebResourceToFile(githubPreface .. "/" .. filePath, fileName)
+    local filePathAndName = filePath .. "/" .. fileName
+    getWebResourceToFile(githubPreface .. filePathAndName, fileName)
 end
 
 function getWebResourceToFile(url, outputFileName)
