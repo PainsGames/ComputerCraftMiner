@@ -6,5 +6,5 @@ FROM gitpod/workspace-full
 #
 # More information: https://www.gitpod.io/docs/config-docker/
 
-RUN git config --global --unset user.name
-RUN git config --global --unset user.email
+#RUN git config --global --unset user.name
+#RUN git config --global --unset user.email
