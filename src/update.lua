@@ -1,13 +1,3 @@
--- Make sure that the following var always matches the file name.
-local thisFilePath = "src/update.lua"
-
--- First, update the update script....
-getGithubResource(thisFilePath)
-
-setupToolsDirectory()
-
-
-
 --[[ Functions ]]--
 
 -- Fetch a github resource from this repository
@@ -33,3 +23,13 @@ function setupToolsDirectory()
         fs.makeDir(directoryName)
     end
 end
+
+--[[ MAIN ]]--
+
+-- Make sure that the following var always matches the file name.
+local thisFilePath = "src/update.lua"
+
+-- First, update the update script....
+getGithubResource(thisFilePath)
+
+setupToolsDirectory()
