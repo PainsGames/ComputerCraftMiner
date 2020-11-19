@@ -2,9 +2,9 @@
 
 -- Fetch a github resource from this repository
 -- filePath - the repository-level path to the file to grab
-function getGithubResource(filePath)
+function getGithubResource(filePath, fileName)
     local githubPreface = "https://raw.githubusercontent.com/PainsGames/ComputerCraftMiner/main/"
-    getWebResourceToFile(githubPreface .. filePath)
+    getWebResourceToFile(githubPreface .. "/" .. filePath, fileName)
 end
 
 function getWebResourceToFile(url, outputFileName)
@@ -27,9 +27,9 @@ end
 --[[ MAIN ]]--
 
 -- Make sure that the following var always matches the file name.
-local thisFilePath = "src/update.lua"
+local thisFilePath = "update.lua"
 
 -- First, update the update script....
-getGithubResource(thisFilePath)
+getGithubResource("src", thisFilePath)
 
 setupToolsDirectory()
