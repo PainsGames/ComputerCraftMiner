@@ -4,4 +4,8 @@
 
 function forward(steps)
     local repeatSteps = steps or 1
+
+    for i=0,repeatSteps do
+        turtle.forward()
+    end
 end
