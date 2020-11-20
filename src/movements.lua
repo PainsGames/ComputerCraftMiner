@@ -2,6 +2,17 @@
 -- A set of functions to make the simplistic
 -- movement of turtles a little less intensive.
 
+-- [[ Helper local functions ]] --
+
+local function loopAction(action, numberOfExecutions)
+    local repeatSteps = numberOfExecutions or 1
+
+    for i=1,repeatSteps do
+        action()
+    end
+end
+
+
 -- [[ Moving the turtle ]] --
 local function moveForward(steps)
     loopAction(turtle.forward, steps)
@@ -44,16 +55,6 @@ end
 local function turnAround(steps)
     local repeatSteps = steps or 1
     loopAction(turtle.turnRight, repeatSteps * 2)
-end
-
--- [[ Helper local functions ]] --
-
-local function loopAction(action, numberOfExecutions)
-    local repeatSteps = numberOfExecutions or 1
-
-    for i=1,repeatSteps do
-        action()
-    end
 end
 
 -- [[ Public Api ]] --

@@ -4,6 +4,33 @@
 
 require "movements"
 
+
+-- [[ Helper Functions ]] --
+local function doActionFront(action) 
+    return action()
+end
+
+local function doActionLeft(action) 
+    turnLeft()
+    local actionResult = action()
+    turnRight()
+    return actionResult
+end
+
+local function doActionRight(action) 
+    turnRight()
+    local actionResult = action()
+    turnLeft()
+    return actionResult
+end
+
+local function doActionBack(action) 
+    turnAround()
+    local actionResult = action()
+    turnAround()
+    return actionResult
+end
+
 -- [[ Inspection ]] --
 local function inspectFront() 
     return doActionFront(turtle.inspect)
@@ -52,32 +79,6 @@ end
 
 local function digUp()
     return turtle.digUp()
-end
-
--- [[ Helper Functions ]] --
-local function doActionFront(action) 
-    return action()
-end
-
-local function doActionLeft(action) 
-    turnLeft()
-    local actionResult = action()
-    turnRight()
-    return actionResult
-end
-
-local function doActionRight(action) 
-    turnRight()
-    local actionResult = action()
-    turnLeft()
-    return actionResult
-end
-
-local function doActionBack(action) 
-    turnAround()
-    local actionResult = action()
-    turnAround()
-    return actionResult
 end
 
 -- [[ Public Api ]] --
