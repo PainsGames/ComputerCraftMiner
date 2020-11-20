@@ -5,8 +5,9 @@
 function getGithubResource(filePath, fileName)
     print("Pulling resource: " .. fileName)
     local githubPreface = "https://raw.githubusercontent.com/PainsGames/ComputerCraftMiner/main/"
-    local filePathAndName = filePath .. "/" .. fileName
-    getWebResourceToFile(githubPreface .. filePathAndName, getToolDirectory() .. fileName)
+    local fileUrl = githubPreface .. filePath .. "/" .. fileName
+    local outputFilePath = getToolDirectory() .. "/" .. fileName
+    getWebResourceToFile(fileUrl, outputFilePath)
 end
 
 function getWebResourceToFile(url, outputFileName)
