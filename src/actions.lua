@@ -4,26 +4,6 @@
 
 require "movements"
 
--- [[ Public Api ]] --
-
-inspect = {
-    front = inspectFront,
-    right = inspectRight,
-    left  = inspectLeft,
-    back  = inspectBack,
-    down  = inspectDown,
-    up    = inspectUp
-}
-
-dig = {
-    front = digFront,
-    right = digRight,
-    left  = digLeft,
-    back  = digBack,
-    down  = digDown,
-    up    = digUp
-}
-
 -- [[ Inspection ]] --
 local function inspectFront() 
     return doActionFront(turtle.inspect)
@@ -99,3 +79,23 @@ local function doActionBack(action)
     turnAround()
     return actionResult
 end
+
+-- [[ Public Api ]] --
+
+inspect = {
+    front = inspectFront,
+    right = inspectRight,
+    left  = inspectLeft,
+    back  = inspectBack,
+    down  = inspectDown,
+    up    = inspectUp
+}
+
+dig = {
+    front = digFront,
+    right = digRight,
+    left  = digLeft,
+    back  = digBack,
+    down  = digDown,
+    up    = digUp
+}

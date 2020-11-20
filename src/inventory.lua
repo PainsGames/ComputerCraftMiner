@@ -2,13 +2,6 @@
 -- A set of functions to make the simplistic
 -- inventory actions of turtles a little less intensive.
 
--- [[ Public Api ]] --
-
-inventory = {
-    findSlotsWithItem = findInventorySlotsWithItem,
-    isSlotFull = isInventorySlotFull
-}
-
 -- [[ Helper Functions ]] --
 
 -- Item tags are in the expected format of "mod:item" so
@@ -38,3 +31,10 @@ local function isInventorySlotFull(slotNumber)
 
     return isFull
 end
+
+-- [[ Public Api ]] --
+
+inventory = {
+    findSlotsWithItem = findInventorySlotsWithItem,
+    isSlotFull = isInventorySlotFull
+}

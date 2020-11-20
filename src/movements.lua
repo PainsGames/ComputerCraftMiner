@@ -2,23 +2,6 @@
 -- A set of functions to make the simplistic
 -- movement of turtles a little less intensive.
 
--- [[ Public Api ]] --
-
-move = {
-    forward = moveForward,
-    back    = moveBack,
-    left    = moveLeft,
-    right   = moveRight,
-    up      = moveUp,
-    down    = moveDown 
-}
-
-turn = {
-    left = turnLeft,
-    right = turnRight,
-    around = turnAround
-}
-
 -- [[ Moving the turtle ]] --
 local function moveForward(steps)
     loopAction(turtle.forward, steps)
@@ -72,3 +55,20 @@ local function loopAction(action, numberOfExecutions)
         action()
     end
 end
+
+-- [[ Public Api ]] --
+
+move = {
+    forward = moveForward,
+    back    = moveBack,
+    left    = moveLeft,
+    right   = moveRight,
+    up      = moveUp,
+    down    = moveDown 
+}
+
+turn = {
+    left = turnLeft,
+    right = turnRight,
+    around = turnAround
+}
