@@ -17,7 +17,7 @@ function getWebResourceToFile(url, outputFileName)
     local file = fs.open(outputFileName, "w")
     file.write(requestContent)
     file.close()
-endupdate
+end
 
 function setupToolsDirectory()
     local directoryName = "/tools"
