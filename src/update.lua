@@ -16,7 +16,7 @@ function getWebResourceToFile(url, outputFileName)
     local file = fs.open(outputFileName, "w")
     file.write(requestContent)
     file.close()
-end
+endupdate
 
 function setupToolsDirectory()
     local directoryName = "/tools"
@@ -34,3 +34,7 @@ local thisFilePath = "update.lua"
 getGithubResource("src", thisFilePath)
 
 setupToolsDirectory()
+
+-- Update the following files. 
+getGithubResource("src", "movement.lua")
+getGithubResource("src", "tunnel.lua")
