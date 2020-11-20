@@ -29,7 +29,7 @@ function moveUp(steps)
 end
 
 function moveDown(steps)
-    loopAction(turtle.up, steps)
+    loopAction(turtle.down, steps)
 end
 
 -- [[ Turning the turtle ]] --
