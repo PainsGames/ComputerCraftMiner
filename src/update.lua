@@ -41,5 +41,7 @@ getGithubResource("src", thisFilePath)
 setupToolsDirectory()
 
 -- Update the following files. 
-getGithubResource("src", "movement.lua")
+getGithubResource("src", "movements.lua")
+getGithubResource("src", "actions.lua")
+getGithubResource("src", "inventory.lua")
 getGithubResource("src", "tunnel.lua")
