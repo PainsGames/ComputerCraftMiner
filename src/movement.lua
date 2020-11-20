@@ -52,7 +52,7 @@ end
 function loopAction(action, numberOfExecutions)
     local repeatSteps = numberOfExecutions or 1
 
-    for i=1,loopCount do
+    for i=1,repeatSteps do
         action()
     end
 end
