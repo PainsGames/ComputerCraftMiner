@@ -6,7 +6,7 @@ function getGithubResource(filePath, fileName)
     print("Pulling resource: " .. fileName)
     local githubPreface = "https://raw.githubusercontent.com/PainsGames/ComputerCraftMiner/main/"
     local filePathAndName = filePath .. "/" .. fileName
-    getWebResourceToFile(githubPreface .. filePathAndName, fileName)
+    getWebResourceToFile(githubPreface .. filePathAndName, getToolDirectory() .. fileName)
 end
 
 function getWebResourceToFile(url, outputFileName)
@@ -20,10 +20,13 @@ function getWebResourceToFile(url, outputFileName)
 end
 
 function setupToolsDirectory()
-    local directoryName = "/tools"
-    if not fs.exists(directoryName) then
-        fs.makeDir(directoryName)
+    if not fs.exists(getToolDirectory()) then
+        fs.makeDir(getToolDirectory())
     end
+end
+
+function getToolDirectory()
+    return "/tools"
 end
 
 --[[ MAIN ]]--
