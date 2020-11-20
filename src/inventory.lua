@@ -13,7 +13,7 @@ local function findInventorySlotsWithItem(itemTag)
 
     for i=1,16 do
         local item = turtle.getItemDetail(i)
-        if item.name == itemTag then
+        if item ~= nil and item.name == itemTag then
             slots[#slots + 1] = i
         end
     end
