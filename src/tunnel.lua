@@ -1,3 +1,3 @@
 require "movements" 
 
-forward()
+move.forward()

@@ -4,76 +4,96 @@
 
 require "movements"
 
+-- [[ Public Api ]] --
+
+inspect = {
+    front = inspectFront,
+    right = inspectRight,
+    left  = inspectLeft,
+    back  = inspectBack,
+    down  = inspectDown,
+    up    = inspectUp
+}
+
+dig = {
+    front = digFront,
+    right = digRight,
+    left  = digLeft,
+    back  = digBack,
+    down  = digDown,
+    up    = digUp
+}
+
 -- [[ Inspection ]] --
-function inspectFront() 
+local function inspectFront() 
     return doActionFront(turtle.inspect)
 end
 
-function inspectRight() 
+local function inspectRight() 
     return doActionRight(turtle.inspect)
 end
 
-function inspectLeft() 
+local function inspectLeft() 
     doActionLeft(turtle.inspect)
 end
 
-function inspectBack() 
+local function inspectBack() 
     doActionBack(turtle.inspect)
 end
 
-function inspectDown()
+local function inspectDown()
     return turtle.inspectDown()
 end
 
-function inspectUp()
+local function inspectUp()
     return turtle.inspectUp()
 end
 
 -- [[ Dig ]] --
-function digFront() 
+local function digFront() 
     return doActionFront(turtle.dig)
 end
 
-function digRight() 
+local function digRight() 
     return doActionRight(turtle.dig)
 end
 
-function digLeft() 
+local function digLeft() 
     doActionLeft(turtle.dig)
 end
 
-function digBack() 
+local function digBack() 
     doActionBack(turtle.dig)
 end
 
-function digDown()
+local function digDown()
     return turtle.digDown()
 end
 
-function digUp()
+local function digUp()
     return turtle.digUp()
 end
 
 -- [[ Helper Functions ]] --
-function doActionFront(action) 
+local function doActionFront(action) 
     return action()
 end
 
-function doActionLeft(action) 
+local function doActionLeft(action) 
     turnLeft()
     local actionResult = action()
     turnRight()
     return actionResult
 end
 
-function doActionRight(action) 
+local function doActionRight(action) 
     turnRight()
     local actionResult = action()
     turnLeft()
     return actionResult
 end
 
-function doActionBack(action) 
+local function doActionBack(action) 
     turnAround()
     local actionResult = action()
     turnAround()
