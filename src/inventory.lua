@@ -18,13 +18,13 @@ local function getAllItemDetails(slot)
     return turtle.getItemDetail(slot, true)
 end
 
-local function findInventorySlotsWithItem(itemTag)
+local function findInventorySlotsWithItem(itemName)
     
     local slots = {}
 
     for i=1,inventorySpaces do
         local item = turtle.getItemDetail(i)
-        if item ~= nil and item.name == itemTag then
+        if item ~= nil and item.name == itemName then
             slots[#slots + 1] = i
         end
     end
@@ -57,23 +57,28 @@ local function getEmptySlots()
     return isThereAnEmptySlot
 end
 
-local function canInventoryFitBlock(itemTag)
+local function canInventoryFitItem(itemName)
 
     local canFitBlock = false
     
-        for i=1,inventorySpaces do
-        if isInventorySlotFull(i) == nil then
+    for i=1,inventorySpaces do
+        local item = isInventorySlotFull(i)
+
+        if item == nil then
             canFitBlock = true
             break
+        else
+            canFitBlock = canInventoryFitItem(itemName)
         end
-
-        return canFitBlock
     end
+
+    return canFitBlock
 end
 
 -- [[ Public Api ]] --
 
 inventory = {
     findSlotsWithItem = findInventorySlotsWithItem,
-    isSlotFull = isInventorySlotFull
+    isSlotFull = isInventorySlotFull,
+    canFitItem = canFitItem
 }
