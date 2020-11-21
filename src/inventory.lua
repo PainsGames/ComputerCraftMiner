@@ -65,8 +65,6 @@ local function canInventoryFitBlock(itemTag)
         if isInventorySlotFull(i) == nil then
             canFitBlock = true
             break
-        else 
-            
         end
 
         return canFitBlock
