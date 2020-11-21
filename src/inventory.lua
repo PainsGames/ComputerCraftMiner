@@ -62,13 +62,13 @@ local function canInventoryFitItem(itemName)
     local canFitBlock = false
     
     for i=1,inventorySpaces do
-        local item = isInventorySlotFull(i)
+        local item = getItemDetails(i)
 
         if item == nil then
             canFitBlock = true
             break 
-        else if item.name == itemName
-            canFitBlock = isInventorySlotFull(i)
+        elseif item.name == itemName then
+            canFitBlock = not isInventorySlotFull(i)
         end
     end
 
