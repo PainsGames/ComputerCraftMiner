@@ -80,5 +80,5 @@ end
 inventory = {
     findSlotsWithItem = findInventorySlotsWithItem,
     isSlotFull = isInventorySlotFull,
-    canFitItem = canFitItem
+    canFitItem = canInventoryFitItem
 }
