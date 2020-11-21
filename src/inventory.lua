@@ -66,9 +66,9 @@ local function canInventoryFitItem(itemName)
 
         if item == nil then
             canFitBlock = true
-            break
-        else
-            canFitBlock = canInventoryFitItem(itemName)
+            break 
+        else if item.name == itemName
+            canFitBlock = isInventorySlotFull(i)
         end
     end
 
