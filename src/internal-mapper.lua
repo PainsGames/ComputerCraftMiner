@@ -1,0 +1,4 @@
+-- [[ Internal Mapper ]] --
+-- A set of functions to provide an internal positional mapper.
+-- Supplies some callback functions that can be passed to movement 
+--  functions that while update and maintain internal positions.
