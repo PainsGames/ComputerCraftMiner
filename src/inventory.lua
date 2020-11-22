@@ -22,20 +22,35 @@ local function getItemCount(slot)
     return turtle.getItemCount(slot)
 end
 
+local function selectSlot(slot)
+    return turtle.select(slot)
+end
+
+
 -- [[ Functions ]] --
 
+
+-- @return an object with the slots indexs, count, and total count of the desired item
+-- item.total = total target items in inventory
+-- item.slots = the slots with the target items
+-- item.counts = slot index to count of target item in the slot
 local function findInventorySlotsWithItem(itemName)
     
-    local slots = {}
+    local items = {}
+    items.slots = {}
+    items.counts = {}
+    items.total = 0
 
     for i=1,inventorySpaces do
         local item = turtle.getItemDetail(i)
         if item ~= nil and item.name == itemName then
-            slots[#slots + 1] = i
+            items.slots[#slots + 1] = i
+            items.counts[i] = item.count
+            items.total += item.count
         end
     end
 
-    return slots
+    return items
 end
 
 local function isInventorySlotFull(slotNumber)
@@ -102,4 +117,10 @@ inventory = {
     isSlotFull = isInventorySlotFull,
     canFitItem = canInventoryFitItem,
     isInventoryFull = isInventoryFull,
+    selectSlot = selectSlot
+}
+
+ITEMS = {
+    torch = "minecraft:torch"
+    coal  = "minecraft:coal"
 }

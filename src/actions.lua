@@ -81,6 +81,32 @@ local function digUp()
     return turtle.digUp()
 end
 
+
+-- [[ Place ]] --
+local function placeFront() 
+    return doActionFront(turtle.place)
+end
+
+local function placeRight() 
+    return doActionRight(turtle.place)
+end
+
+local function placeLeft() 
+    doActionLeft(turtle.place)
+end
+
+local function placeBack() 
+    doActionBack(turtle.place)
+end
+
+local function placeDown()
+    return turtle.placeDown()
+end
+
+local function placeUp()
+    return turtle.placeUp()
+end
+
 -- [[ Public Api ]] --
 
 inspect = {
@@ -99,4 +125,13 @@ dig = {
     back  = digBack,
     down  = digDown,
     up    = digUp
+}
+
+place = {
+    front = placeFront,
+    right = placeRight,
+    left  = placeLeft,
+    back  = placeBack,
+    down  = placeDown,
+    up    = placeUp
 }

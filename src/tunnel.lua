@@ -29,6 +29,34 @@ local function canMineBlock(isBlockPresent, blockToMine)
     return canMineBlock
 end
 
+local function getNextItemSlot(items)
+    for i=1,#items.slots do
+        if items.counts[item.slots[i]] > 0 then
+            return i
+        end
+    end
+
+    return -1
+end
+
+-- @return false if there is an error
+local function placeTorch(torches)
+
+    if torches.total > 0 then
+        local slot = getNextItemSlot(torches)
+        if (slot >= 0) then
+            inventory.selectSlot(slot)
+            place.up()
+        else
+            return false
+        end
+    else
+        return false
+    end
+end
+
+-- [[ Mining Functions ]] --
+
 -- Return false if there is an issue during execution, or true if there are no problems
 local function mineColumn(height)
     for i=1,height do
@@ -63,10 +91,25 @@ local function mineSlice(height, width)
     return true
 end
 
-local function mineTunnel(height, width, depth)
+
+-- @param height  - required - the height in blocks of the tunnel
+-- @param width   - required - the width in blocks of the tunnel
+-- @param depth   - required - the height in blocks of the tunnel
+-- @param torches - optional - inventory information about torches
+local function mineTunnel(height, width, depth, torches)
     for i=1,depth do
         if not mineSlice(height, width) then
+            move.back(i) -- TODO: replace this with the internal mapper 
             return
+        end
+
+        if torches.total == 0 then
+            move.back(i) -- TODO: replace this with the internal mapper 
+            return
+        end
+
+        if i % 5 == 0 then
+            placeTorch(torches)
         end
 
         if i ~= depth then
@@ -79,4 +122,5 @@ local function mineTunnel(height, width, depth)
 end
 
 -- [[ Main ]] --
-mineTunnel(height, width, depth)
+torches = inventory.findSlotsWithItem(ITEMS.torch)
+mineTunnel(height, width, depth, torches)
