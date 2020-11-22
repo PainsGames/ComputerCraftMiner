@@ -11,7 +11,7 @@ local function mineBlock()
     local isBlockPresent, blockToMine = inspect.front()
 
     if isBlockPresent and inventory.canFitItem(blockToMine.name) then
-        dig.forward()
+        dig.front()
     end
 end
 
@@ -31,8 +31,7 @@ end
 -- Return false if there is an issue during execution, or true if there are no problems
 local function mineColumn(height)
     for i=1,height do
-        local isBlockPresent, blockToMine = inspect.front()
-        if not canMineBlock(isBlockPresent, blockToMine) then
+        if inventory.isInventoryFull() then
             print("Stopping due to full inventory.")
             return false
         else
@@ -47,7 +46,9 @@ end
 
 -- [[ Main ]] --
 for i=1,width do
-    mineColumn(height)
+    if not mineColumn(height) then
+        return
+    end
     move.left()
 end
 move.right(width)

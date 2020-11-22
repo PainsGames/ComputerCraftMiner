@@ -18,6 +18,12 @@ local function getAllItemDetails(slot)
     return turtle.getItemDetail(slot, true)
 end
 
+local function getItemCount(slot)
+    return turtle.getItemCount(slot)
+end
+
+-- [[ Functions ]] --
+
 local function findInventorySlotsWithItem(itemName)
     
     local slots = {}
@@ -75,10 +81,24 @@ local function canInventoryFitItem(itemName)
     return canFitBlock
 end
 
+local function isInventoryFull()
+
+    for i=1,inventorySpaces do
+        local item = getItemCount(i)
+
+        if item == nil then
+            return false
+    end
+
+    return true
+end
+
+
 -- [[ Public Api ]] --
 
 inventory = {
     findSlotsWithItem = findInventorySlotsWithItem,
     isSlotFull = isInventorySlotFull,
-    canFitItem = canInventoryFitItem
+    canFitItem = canInventoryFitItem,
+    isInventoryFull = isInventoryFull,
 }
