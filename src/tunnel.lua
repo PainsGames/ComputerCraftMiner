@@ -69,7 +69,11 @@ for i=1,depth do
     if not mineSlice(height, width) then
         return
     end
-    
-    move.back(depth - 1) -- TODO: replace this with the internal mapper 
-    return true
+
+    if i ~= depth then
+        move.front()
+    end
 end
+
+move.back(depth - 1) -- TODO: replace this with the internal mapper 
+return true
