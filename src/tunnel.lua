@@ -63,17 +63,20 @@ local function mineSlice(height, width)
     return true
 end
 
--- [[ Main ]] --
+local function mineTunnel(height, width, depth)
+    for i=1,depth do
+        if not mineSlice(height, width) then
+            return
+        end
 
-for i=1,depth do
-    if not mineSlice(height, width) then
-        return
+        if i ~= depth then
+            move.forward()
+        end
     end
 
-    if i ~= depth then
-        move.front()
-    end
+    move.back(depth - 1) -- TODO: replace this with the internal mapper 
+    return true
 end
 
-move.back(depth - 1) -- TODO: replace this with the internal mapper 
-return true
+-- [[ Main ]] --
+mineTunnel(height, width, depth)
