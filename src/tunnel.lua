@@ -31,8 +31,8 @@ end
 
 local function getNextItemSlot(items)
     for i=1,#items.slots do
-        if items.counts[item.slots[i]] > 0 then
-            return i
+        if items.counts[items.slots[i]] > 0 then
+            return items.slots[i]
         end
     end
 
@@ -99,17 +99,17 @@ end
 local function mineTunnel(height, width, depth, torches)
     for i=1,depth do
         if not mineSlice(height, width) then
-            move.back(i) -- TODO: replace this with the internal mapper 
+            move.back(i - 1) -- TODO: replace this with the internal mapper 
             return
         end
 
-        if torches.total == 0 then
-            move.back(i) -- TODO: replace this with the internal mapper 
+        if torches ~= nil and torches.total == 0 then
+            move.back(i - 1) -- TODO: replace this with the internal mapper 
             return
-        end
-
-        if i % 5 == 0 then
-            placeTorch(torches)
+        else 
+            if i % 5 == 0 then
+                placeTorch(torches)
+            end
         end
 
         if i ~= depth then

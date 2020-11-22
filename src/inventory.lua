@@ -44,9 +44,9 @@ local function findInventorySlotsWithItem(itemName)
     for i=1,inventorySpaces do
         local item = turtle.getItemDetail(i)
         if item ~= nil and item.name == itemName then
-            items.slots[#slots + 1] = i
+            items.slots[#items.slots + 1] = i
             items.counts[i] = item.count
-            items.total += item.count
+            items.total = items.total + item.count
         end
     end
 
@@ -121,6 +121,6 @@ inventory = {
 }
 
 ITEMS = {
-    torch = "minecraft:torch"
+    torch = "minecraft:torch",
     coal  = "minecraft:coal"
 }
