@@ -28,12 +28,13 @@ local function canMineBlock(isBlockPresent, blockToMine)
     return canMineBlock
 end
 
+-- Return false if there is an issue during execution, or true if there are no problems
 local function mineColumn(height)
-    for i=0,height do
-        Local isBlockPresent, blockToMine = inspect.front()
+    for i=1,height do
+        local isBlockPresent, blockToMine = inspect.front()
         if not canMineBlock(isBlockPresent, blockToMine) then
             print("Stopping due to full inventory.")
-            break
+            return false
         else
             mineBlock()
             move.up()
@@ -41,14 +42,12 @@ local function mineColumn(height)
     end
 
     move.down(height)
+    return true
 end
 
 -- [[ Main ]] --
-for i=0,width do
-    for j=0,height do
-        move.up()
-    end
-    move.down(height)
+for i=1,width do
+    mineColumn(height)
     move.left()
 end
-move.right(3)
+move.right(width)
