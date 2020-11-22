@@ -4,6 +4,7 @@ require "inventory"
 
 height = 3
 width = 3
+depth = 2
 
 -- [[ Helper Functions ]] --
 
@@ -36,7 +37,10 @@ local function mineColumn(height)
             return false
         else
             mineBlock()
-            move.up()
+
+            if i ~= height then
+                move.up()
+            end
         end
     end
 
@@ -44,11 +48,28 @@ local function mineColumn(height)
     return true
 end
 
+-- Return false if there is an issue during execution, or true if there are no problems
+local function mineSlice(height, width) 
+    for i=1,width do
+        if not mineColumn(height) then
+            return false
+        end
+
+        if i ~= width then
+            move.left()
+        end
+    end
+    move.right(width - 1) -- TODO: replace this with the internal mapper 
+    return true
+end
+
 -- [[ Main ]] --
-for i=1,width do
-    if not mineColumn(height) then
+
+for i=1,depth do
+    if not mineSlice(height, width) then
         return
     end
-    move.left()
+    
+    move.back(depth - 1) -- TODO: replace this with the internal mapper 
+    return true
 end
-move.right(width)

@@ -84,10 +84,11 @@ end
 local function isInventoryFull()
 
     for i=1,inventorySpaces do
-        local item = getItemCount(i)
+        local count = getItemCount(i)
 
-        if item == nil then
+        if count == 0 then
             return false
+        end
     end
 
     return true
