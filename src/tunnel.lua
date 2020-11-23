@@ -53,20 +53,19 @@ local function placeTorch(height, torches)
         local slot = getNextItemSlot(torches)
         if (slot >= 0) then
             inventory.selectSlot(slot)
-
-            move.up(height - 1)
+            
+            move.up(height - 2)
             if not place.up() then
                 print("Error placing torch.")
                 return false
             end
             print("Placed torch at height: " .. height)
-            move.down(height - 1)
-        else
-            return false
+            move.down(height - 2)
+            return true
         end
-    else
-        return false
     end
+
+    return false
 end
 
 -- [[ Mining Functions ]] --
