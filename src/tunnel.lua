@@ -39,14 +39,23 @@ local function getNextItemSlot(items)
     return -1
 end
 
+-- @param height  - required - height from the floor to place the torch
+-- @param torches - optional - inventory information about torches. If this is nil then a torch will not be placed.
 -- @return false if there is an error
 local function placeTorch(torches)
+
+    if torches ~= nil then
+        return true
+    end
 
     if torches.total > 0 then
         local slot = getNextItemSlot(torches)
         if (slot >= 0) then
             inventory.selectSlot(slot)
+
+            move.up(height - 1)
             place.up()
+            move.down(height - 1)
         else
             return false
         end
@@ -103,15 +112,8 @@ local function mineTunnel(height, width, depth, torches)
             return
         end
 
-        if torches ~= nil and torches.total == 0 then
-            move.back(i - 1) -- TODO: replace this with the internal mapper 
-            return
-        else 
-            if i % 5 == 0 then
-                move.up(height - 1)
-                placeTorch(torches)
-                move.down(height - 1)
-            end
+        if depth == 1 or depth % 6 == 0 then
+            placeTorch(3, torches)
         end
 
         if i ~= depth then
