@@ -42,7 +42,7 @@ end
 -- @param height  - required - height from the floor to place the torch
 -- @param torches - optional - inventory information about torches. If this is nil then a torch will not be placed.
 -- @return false if there is an error
-local function placeTorch(torches)
+local function placeTorch(height, torches)
 
     if torches == nil then
         print("Not placing torch because torch inv data is nil.")
@@ -55,7 +55,10 @@ local function placeTorch(torches)
             inventory.selectSlot(slot)
 
             move.up(height - 1)
-            place.up()
+            if not place.up() then
+                print("Error placing torch.")
+                return false
+            end
             print("Placed torch at height: " .. height)
             move.down(height - 1)
         else
@@ -108,6 +111,8 @@ end
 -- @param depth   - required - the height in blocks of the tunnel
 -- @param torches - optional - inventory information about torches
 local function mineTunnel(height, width, depth, torches)
+    print(textutils.serialise(torches))
+
     for i=1,depth do
         if not mineSlice(height, width) then
             move.back(i - 1) -- TODO: replace this with the internal mapper 
