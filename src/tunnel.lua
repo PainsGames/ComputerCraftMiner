@@ -112,14 +112,14 @@ local function mineTunnel(height, width, depth, torches)
             return
         end
 
-        if depth == 1 or depth % 6 == 0 then
+        if i == 1 or i % 6 == 0 then
             placeTorch(3, torches)
         end
 
         if i ~= depth then
             move.forward()
         end
-    end
+    end 
 
     move.back(depth - 1) -- TODO: replace this with the internal mapper 
     return true
