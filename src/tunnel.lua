@@ -2,9 +2,9 @@ require "movements"
 require "actions" 
 require "inventory" 
 
-height = 3
-width = 3
-depth = 2
+height = 5
+width = 5
+depth = 100
 
 -- [[ Helper Functions ]] --
 
@@ -108,7 +108,9 @@ local function mineTunnel(height, width, depth, torches)
             return
         else 
             if i % 5 == 0 then
+                move.up(height - 1)
                 placeTorch(torches)
+                move.down(height - 1)
             end
         end
 
