@@ -121,7 +121,9 @@ local function mineTunnel(height, width, depth, torches)
 
         if i == 1 or i % 6 == 0 then
             print("Placing torch at i: " .. i)
-            placeTorch(3, torches)
+            if not placeTorch(3, torches) then
+                return false
+            end 
         else 
             print("Not placing torch at i: " .. i)
         end
