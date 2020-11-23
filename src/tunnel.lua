@@ -53,7 +53,7 @@ local function placeTorch(height, torches)
         local slot = getNextItemSlot(torches)
         if (slot >= 0) then
             inventory.selectSlot(slot)
-            
+
             move.up(height - 2)
             if not place.up() then
                 print("Error placing torch.")
@@ -67,6 +67,21 @@ local function placeTorch(height, torches)
 
     return false
 end
+
+-- This function takes in the depth and all that fun shit
+--  to determine if it should place a torch.
+local function handlePlacingTorches(depth, torches)
+
+    if depth == 1 or depth % 6 == 0 then
+        print("Placing torch at i: " .. i)
+        if not placeTorch(3, torches) then
+            return false
+        end 
+    else 
+        print("Not placing torch at depth: " .. depth)
+    end
+end
+
 
 -- [[ Mining Functions ]] --
 
@@ -113,19 +128,14 @@ local function mineTunnel(height, width, depth, torches)
     print(textutils.serialise(torches))
 
     for i=1,depth do
+        handlePlacingTorches(i, torches)
+
         if not mineSlice(height, width) then
             move.back(i - 1) -- TODO: replace this with the internal mapper 
             return
         end
 
-        if i == 1 or i % 6 == 0 then
-            print("Placing torch at i: " .. i)
-            if not placeTorch(3, torches) then
-                return false
-            end 
-        else 
-            print("Not placing torch at i: " .. i)
-        end
+        handlePlacingTorches(i, torches) --Since we want to place torches on both sides of the shaft
 
         if i ~= depth then
             move.forward()
