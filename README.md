@@ -2,3 +2,6 @@
 
 # ComputerCraftMiner
 Repo for Computer Craft miners.
+
+# Quick install for Computers
+```wget https://raw.githubusercontent.com/PainsGames/ComputerCraftMiner/main/src/update.lua update.lua```
