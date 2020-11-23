@@ -73,7 +73,7 @@ end
 local function handlePlacingTorches(depth, torches)
 
     if depth == 1 or depth % 6 == 0 then
-        print("Placing torch at i: " .. i)
+        print("Placing torch at depth: " .. depth)
         if not placeTorch(3, torches) then
             return false
         end 
@@ -115,7 +115,7 @@ local function mineSlice(height, width)
             move.left()
         end
     end
-    move.right(width - 1) -- TODO: replace this with the internal mapper 
+    
     return true
 end
 
@@ -128,13 +128,14 @@ local function mineTunnel(height, width, depth, torches)
     print(textutils.serialise(torches))
 
     for i=1,depth do
-        handlePlacingTorches(i, torches)
 
         if not mineSlice(height, width) then
             move.back(i - 1) -- TODO: replace this with the internal mapper 
             return
         end
 
+        handlePlacingTorches(i, torches)
+        move.right(width)
         handlePlacingTorches(i, torches) --Since we want to place torches on both sides of the shaft
 
         if i ~= depth then
