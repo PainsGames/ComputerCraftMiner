@@ -44,7 +44,7 @@ end
 -- @return false if there is an error
 local function placeTorch(torches)
 
-    if torches ~= nil then
+    if torches == nil then
         print("Not placing torch because torch inv data is nil.")
         return true
     end
