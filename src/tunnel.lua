@@ -45,6 +45,7 @@ end
 local function placeTorch(torches)
 
     if torches ~= nil then
+        print("Not placing torch because torch inv data is nil.")
         return true
     end
 
@@ -55,6 +56,7 @@ local function placeTorch(torches)
 
             move.up(height - 1)
             place.up()
+            print("Placed torch at height: " .. height)
             move.down(height - 1)
         else
             return false
@@ -113,7 +115,10 @@ local function mineTunnel(height, width, depth, torches)
         end
 
         if i == 1 or i % 6 == 0 then
+            print("Placing torch at i: " .. i)
             placeTorch(3, torches)
+        else 
+            print("Not placing torch at i: " .. i)
         end
 
         if i ~= depth then
